@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lexer_in_c", "Lexer_in_c.vcxproj", "{9FF045BF-71B1-4DD2-930D-7544F3A013BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9FF045BF-71B1-4DD2-930D-7544F3A013BA}.Debug|x64.ActiveCfg = Debug|x64
+		{9FF045BF-71B1-4DD2-930D-7544F3A013BA}.Debug|x64.Build.0 = Debug|x64
+		{9FF045BF-71B1-4DD2-930D-7544F3A013BA}.Debug|x86.ActiveCfg = Debug|Win32
+		{9FF045BF-71B1-4DD2-930D-7544F3A013BA}.Debug|x86.Build.0 = Debug|Win32
+		{9FF045BF-71B1-4DD2-930D-7544F3A013BA}.Release|x64.ActiveCfg = Release|x64
+		{9FF045BF-71B1-4DD2-930D-7544F3A013BA}.Release|x64.Build.0 = Release|x64
+		{9FF045BF-71B1-4DD2-930D-7544F3A013BA}.Release|x86.ActiveCfg = Release|Win32
+		{9FF045BF-71B1-4DD2-930D-7544F3A013BA}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C0A9B6F6-09B9-4A99-BA02-348023478F62}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Users\petro\source\repos\Lexer_in_c\main.cpp(62): warning C4715: 'yylex': not all control paths return a value
+  Lexer_in_c.vcxproj -> C:\Users\petro\source\repos\Lexer_in_c\Debug\Lexer_in_c.exe

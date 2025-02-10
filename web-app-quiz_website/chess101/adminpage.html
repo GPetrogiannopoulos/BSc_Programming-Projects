@@ -1,0 +1,106 @@
+<?php
+    session_start();
+    include("connect.php");
+?>
+
+<!doctype html>
+
+<html lang="en">
+    
+  <head>
+  	<title>Admin</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/style.css">
+
+	</head>
+
+
+    
+	<body>  
+        <div class="topnav"> 
+            <a href="index.html">Home</a>
+            <a href="basics.html" >basics</a>
+            <a href="more.html">more</a>
+            <a href="login.html">login</a>  
+            <a href="signup.html">sign up</a>      
+            <a href="quiz.php">quiz</a> 
+            <a href="profile.php">Profile</a>
+            <a href="modspage.html">Moderator</a>	
+            <a class="active" href="adminpage.php">Admin</a>		  
+        </div>
+           
+		<div class="container"> 
+            <div class="row justify-content-center">
+                <?php
+                if($_SESSION["role"]=="administrator"){
+                ?>
+
+                <div class="col-md-7 col-lg-3">
+                    <div class="login-wrap p-4 p-md-3">
+                        <div class="row justify-content-center align-items-center">
+                            <h3 class="text-center mb-4"><b>Accounts</h3></b></h3>
+                                </div>
+                                <?php
+                                    if($_SESSION["logged"]=="true")
+                                    {
+                                        $sql = "select * from users;";
+                                        $users = mysqli_query($conn,$sql);
+                                        $i=0;
+                                        while($row = mysqli_fetch_array($users)) 
+                                        {
+                                            ?>
+                                            <table>
+                                            <tr>
+                                            <td width="100px"><?php echo $row["role"]; ?>&nbsp;</td>
+                                            <td >
+                                            <?php echo $row["username"]; ?>&nbsp;</td>
+                                            </tr>
+                                            </table>
+                                            <?php
+                                            $i++;
+                                        }
+                                    }
+                                ?>
+                    </div>       
+                </div>
+            
+
+                <div class="col-md-7 col-lg-4">
+                    <div class="login-wrap p-4 p-md-3">
+                        <h3 class="text-center mb-4"><b>Edit user</b></h3>
+                            <form action="admin.php" class="login-form" method="post">
+                                <div class="form-group">
+                                    <input type="text" name="username" class="form-control rounded-left" placeholder="Username" required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" name="promote" class="form-control btn btn-primary rounded submit px-3">promote</button>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" name="demote" class="form-control btn btn-primary rounded submit px-3">demote</button>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" name="delete" class="form-control btn btn-primary rounded submit px-3">delete user</button>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+                <?php
+            }   else
+                {
+                    echo "<script type='text/javascript'>
+                    alert('not an administrator');
+                    window.location.replace('login.html');
+                    </script>";
+                }
+                ?>
+            </div>
+        </div>        
+
+	</body>
+</html>

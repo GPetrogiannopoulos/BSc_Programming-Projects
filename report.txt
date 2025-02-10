@@ -1,0 +1,77 @@
+Δομες Δεδομενων Εργασια 3(Συστημα cassandra)
+
+Σκοπος της εργασιας η δημιουργια ενος συστηματος cassandra χρησιμοποιωντας hashtable
+
+Το προγραμμα δεχεται ενα txt αρχειο το οποιο περιεχει εγγραφα ανα γραμμη.
+Καθε γραμμη περιεχει ενα εγγραφο.
+Το εγγραφο περιεχει¨
+     ID: στην αρχη της γραμμης
+     μετα το ID περιεχει λεξεις χωρισμενες με space
+
+Συνεπως το προγραμμα θα πρεπει να ανοιγει το αρχειο κειμενου και να εξαγει τις γραμμες του μια μια.
+Για καθε γραμμη του αρχειου κειμενου 
+    παιρνει το ID
+    μετατρεπει ολες τις λεξεις μετα απο το ID απο κεφαλαια σε μικρα γραμματα , αφαιρεση συμβολων
+    χωριζει την γραμμη σε λεξεις/ορους (2 ιδιοι οροι μετρανε σαν ενας)
+    εισαγει καθε ορο μαζι με το ID που αντιστοιχει στο hashtable αν δεν υπαρχει ηδη ο ορος μεσα  
+
+Απο τη στιγμη που ολοι οι οροι απο το αρχειο κειμενου εχουν μπει στο hashtable 
+τοτε μπορει πλεον να υλοποιηθουν εντολες ευρετηριασμου οροων.
+
+Εντολες:
+    Απλες:
+        stats (word):
+            εμφανιζει στον χρηστη σε ποσα εγγραφα βρισκεται μεσα ο ορος που δινει απο το πληκτρολογιο
+        query (word):
+            εμφανιζει την λιστα εμφανισεων του ορου , δηλαδη εμφανιζει σε ποια εγγραφα βρισκεται ο ορος
+    Συνθετες:
+        queryOR (word1) (word2):
+            εμφανιζει τις λιστες εμφανισεων ολων των ορων που εισαγει ο χρηστης απο το πληκτρολογιο(word1,word2)
+            χρησιμοποιει την query   
+
+Πως λειτουργει το προγραμμα λεπτομερως:
+
+    Αποτελειται απο :
+        > functions:
+
+        > for hashtable:
+            hash_function   50-56
+            create_item     193-203
+            free_item       220-225
+            create_table    205-218
+            free_hashtable  227-234
+            ht_insert       278-314
+            print_hashtable 377-403
+
+        > for handling the ID and collision lists
+            allocate_list             85-89
+            linkedlist_insert         91-120
+            linkedlist_remove        122-140
+            free_linkedlist          142-154
+            create_ID_buckets        156-163
+            create_overflow_buckets  166-173
+            handle_ID                242-258  // insert ID in ID list
+            handle_collision         260-276  // insert ID in ID_overflow list
+
+        > for the commands
+            stats      316-327
+            query      329-348
+            queryOR    350-375
+
+        > structs:
+            ht_item    58-64
+            Linkedlist 68-71
+            HashTable  75-83
+    
+        > extract words from txt and insert to hashtable 
+
+            file_input_process   405-478  // extract words from txt , modify them accordingly , insert them to hashtable
+            keyboard_input       480-542  // commands
+
+Πιο συγκεκριμενα για τα collisions:
+    > χρησιμοποιειται η μεθοδος separate chaining (χωριστη αλυσιδωση)
+    αυτο σημαινει πως  δημιουργουνται ανεξαρτητες αλυσιδες για ολα τα 
+    ht_items τα οποια εχουν το ιδιο hash index
+
+    > χρησιμοποιουνται linked lists , οποτε ανιχνευεται collision προσθετουμε τα items που 
+    συγκρουονται με ιδιο index σε μια overflow_bucket list 

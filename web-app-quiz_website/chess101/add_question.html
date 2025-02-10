@@ -1,0 +1,104 @@
+<?php   
+    session_start();
+    include("connect.php");
+?>
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Quiz</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">                                
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    
+	<body>
+        <div class="topnav">
+            <a href="index.html">Home</a>
+            <a href="basics.html">basics</a>
+            <a href="more.html">more</a>
+            <a href="login.html">login</a>  
+            <a href="signup.html">sign up</a>      
+            <a href="quiz.php">quiz</a>  
+            <a class="active" href="add_question.html">create</a>  
+            <a href="profile.php">Profile</a>	
+            <a href="modspage.html">Moderator</a>
+            <a href="adminpage.html">Admin</a>	
+        </div>
+        <div class="container"> 
+            <div class="row justify-content-center">   
+                <?php 
+                    if(isset($_SESSION["role"])){
+                ?>
+                    <div class="col-md-7 col-lg-4">
+                        <div class="login-wrap p-4 p-md-3">
+                            <h3 class="text-center mb-4"><b>Instructions</h3></b></h3>
+                            <div class="align-items-center justify-content-center">
+                                types:
+                                <li><b>single:</b> only option1 and 1 answer
+                                <li><b>multiple:</b> 1 to max 4 options ,the answer should have this form: answer1,answer2,answer3,answer4 
+                                <li><b>truefalse:</b> option1 type "True", option2 type "False" , answer type "True" or "False"
+                                <li><b>fill blanks:</b> place a '#' inside the question where you want the blank to be located , max 4 , options correspond to their # from first to last
+                                <li><b>all types:</b> if there are more than 1 answers separate them with "," (comma), also do not type comma inside an answer and space before and after any comma
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-7 col-lg-8">
+                        <div class="login-wrap p-4 p-md-3">
+                            <div class="align-items-center justify-content-center">
+                                <h3 class="text-center mb-4"><b>Create a question addition request</h3></b></h3>
+                        
+                                    <b>Question:</b><br>
+                                    
+                                    <form action="add_question.php" method="post">
+                                        <div class="form-group">
+                                            <textarea style="width:100%" name="add_question" maxlength="249" placeholder="type question....."></textarea>
+                                        
+                                            <br><b>Type:</b><br> 
+                                            <input type="radio" id="add_single" name="type" value="single"> single <br>
+                                            <input type="radio" id="add_multiple" name="type" value="multiple"> multiple <br>
+                                            <input type="radio" id="add_truefalse" name="type" value="truefalse"> truefalse <br>
+                                            <input type="radio" id="add_fill" name="type" value="fill"> fill <br>
+                                            
+                                            <br><b>Level:</b><br> 
+                                            <input type="radio" id="add_single" name="level" value="easy"> Easy <br>
+                                            <input type="radio" id="add_multiple" name="level" value="medium"> Medium <br>
+                                            <input type="radio" id="add_truefalse" name="level" value="hard"> Hard <br>
+
+                                            <br><b>Options:</b><br> 
+                                            Option 1:<br><input type="text" name="option1" id="option1" value="">
+                                            <br>Option 2:<br><input type="text" name="option2" id="option2" value="">
+                                            <br>Option 3:<br><input type="text" name="option3" id="option3" value="">
+                                            <br>Option 4:<br><input type="text" name="option4" id="option4" value=""><br>
+
+                                            <br><b>Answers:</b><br> 
+                                            <textarea style="width:100%" name="add_answers" maxlength="149" placeholder="type answers....."></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <button id='submit' class="form-control btn btn-primary rounded submit px-3">Send request</button>
+                                        </div>
+                                    </form>
+
+                                   
+                                    
+                            </div>
+                        </div>            
+                    </div>
+                <?php }else{
+                    echo "<script type='text/javascript'>
+                        alert('not logged in!');
+                        window.location.replace('login.html');
+                        </script>";
+                }
+                ?>
+
+            </div>
+        </div>
+       
+    </body> 
+</html>
+
+
